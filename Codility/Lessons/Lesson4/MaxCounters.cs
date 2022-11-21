@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Codility.Lessons.Lesson4
 {
-    public  class MaxCounters
+    public class MaxCounters
     {
         #region Task
         /*
@@ -77,28 +77,27 @@ each element of array A is an integer within the range [1..N + 1].
 
         #endregion
         /// <summary>
-        /// 判断数组是否是一个序列
+        /// 判断数组是否是一个序列 timeout ,
         /// </summary>
         /// <param name="A"></param>
         /// <returns></returns>
-        public int[] solution(int N,int[] A)
+        public int[] solution(int N, int[] A)
         {
-            int[] arr = new int[N]; 
+            int[] arr = new int[N];
 
-            int max = 0;
-            foreach (var item in A) 
+            int max = 0; // 1,[1]
+            foreach (var item in A)
             {
-                if (item < N)
+                if (item <= N)
                 {
                     arr[item - 1] = arr[item - 1] + 1;
                     max = max > arr[item - 1] ? max : arr[item - 1];
-
                 }
                 else
                 {
-                    for (int i = 0; i < N; i++)
+                    for (int i = 0; i < N; i++) // 当N特别大的时候，会超时
                     {
-                        arr[i]=max;
+                        arr[i] = max;
                     }
                 }
             }

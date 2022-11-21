@@ -11,6 +11,8 @@ namespace Codility.Test.Lesson4
     {
         [TestMethod]
         [DataRow(5,new int[] { 3, 4, 4, 6,1,4,4 }, new int[] { 3, 2, 2, 4, 2 })]
+        [DataRow(1, new int[] { 1 }, new int[] { 1 })]
+        [DataRow(1, new int[] { 1,1,1 }, new int[] { 3 })]
         public void MaxCounters(int N,int[] A, int[] expected)
         {
             var result = new MaxCounters().solution(N,A);
