@@ -10,11 +10,36 @@ namespace Codility.Test.Lesson4
     public class PermCheckTesk
     {
         [TestMethod]
-        [DataRow(new int[] {1,2,3 })]
-        public void Solution(int[] A)
+        [DataRow(new int[] { 4, 1,3, 2 }, 1)]
+        [DataRow(new int[] { 1 }, 1)]
+        public void TheArrayIsPermutation(int[] A,int expected)
         {
             var result = new PermCheck().solution(A);
-            Assert.AreEqual(1, result);
+            Assert.AreEqual(expected, result);
         }
+
+        //[TestMethod]
+        //[DataRow(new int[] { 4, 1, 3, 2 }, 1)]
+        //[DataRow(new int[] { 1 }, 1)]
+        //[DataRow(new int[] { 4, 1, 2 }, 0)]
+        //[DataRow(new int[] { 1, 1 }, 0)]
+        //[DataRow(new int[] { 2 }, 0)]
+        //public void TheArrayIsPermutationSolution2(int[] A, int expected)
+        //{
+        //    var result = new PermCheck().solution2(A);
+        //    Assert.AreEqual(expected, result);
+        //}
+
+        [TestMethod]
+        [DataRow(new int[] { 4, 1, 2 }, 0)]
+        [DataRow(new int[] { 1,1 }, 0)]
+        [DataRow(new int[] { 2 }, 0)]
+        public void TheArrayIsNotPermutation(int[] A, int expected)
+        {
+            var result = new PermCheck().solution(A);
+            Assert.AreEqual(expected, result);
+        }
+
+
     }
 }
