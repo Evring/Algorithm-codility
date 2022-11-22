@@ -88,20 +88,52 @@ each element of array A is an integer within the range [1..N + 1].
             int max = 0; // 1,[1]
             foreach (var item in A)
             {
-                if (item <= N)
+                if (item <= N)   // such that item ≤ N, then operation increase item
                 {
                     arr[item - 1] = arr[item - 1] + 1;
                     max = max > arr[item - 1] ? max : arr[item - 1];
                 }
-                else
+                else            // if item = N + 1 then operation K is max counter.
                 {
-                    for (int i = 0; i < N; i++) // 当N特别大的时候，会超时
-                    {
+                    for (int i = 0; i < N; i++)
                         arr[i] = max;
-                    }
                 }
             }
 
+            return arr;
+        }
+
+        /// <summary>
+        /// 要求时间复杂度是O(N+M)，空间复杂度是O(N)
+        /// 所以我们要对上面的算法进行改良，
+        /// 当我们遍历的时候，其实max 可以留在下次其它计数器更新的时候再进行更新，它更新为max+1即可。
+        /// 最后再统一遍历一边没有更新过的值,把它们更新为max.
+        /// </summary>
+        /// <param name="N"></param>
+        /// <param name="A"></param>
+        /// <returns></returns>
+        public int[] solution2(int N, int[] A)
+        {
+            int max = 0, updateVal = 0;
+            int[] arr = new int[N];
+            foreach (var item in A)
+            {
+                if (item <= N)
+                {
+                    if (arr[item - 1] < updateVal)
+                        arr[item - 1] = updateVal + 1;
+                    else
+                        arr[item - 1]++;
+                    max = max > arr[item - 1] ? max : arr[item - 1];
+                }
+                else
+                    updateVal = max;
+            }
+            for (var i = 0; i < N; i++)
+            {
+                if (arr[i] < updateVal)
+                    arr[i] = updateVal;
+            }
             return arr;
         }
     }

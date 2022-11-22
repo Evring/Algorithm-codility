@@ -18,5 +18,16 @@ namespace Codility.Test.Lesson4
             var result = new MaxCounters().solution(N,A);
             CollectionAssert.AreEqual(expected, result);
         }
+
+
+        [TestMethod]
+        [DataRow(5, new int[] { 3, 4, 4, 6, 1, 4, 4 }, new int[] { 3, 2, 2, 4, 2 })]
+        [DataRow(1, new int[] { 1 }, new int[] { 1 })]
+        [DataRow(1, new int[] { 1, 1, 1 }, new int[] { 3 })]
+        public void MaxCountersSolution2(int N, int[] A, int[] expected)
+        {
+            var result = new MaxCounters().solution2(N, A);
+            CollectionAssert.AreEqual(expected, result);
+        }
     }
 }
